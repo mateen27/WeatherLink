@@ -2,9 +2,9 @@ import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import React from "react";
 import { deviceHeight, deviceWidth } from "./Dimensions";
 
-const Cards = ({ id, name, image }) => {
+const Cards = ({ id, name, image , navigation }) => {
   return (
-    <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={() => {}}>
+    <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={() => navigation.navigate('Details' , {name})}>
       <ImageBackground
         source={image}
         style={{ height: deviceHeight / 5, width: deviceWidth / 2 - 50 }}

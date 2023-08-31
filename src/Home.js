@@ -6,7 +6,7 @@ import { deviceWidth , deviceHeight } from './Dimensions'
 import { Feather } from '@expo/vector-icons';
 import Cards from './Cards';
 
-const Home = () => {
+const Home = (props) => {
     const [cityName , setCityName] = useState('');
 
     const cities = [
@@ -57,7 +57,9 @@ const Home = () => {
         {/* for text input field */}
         <View style = {{ flexDirection : 'row' , justifyContent : 'space-between' , alignItems : 'center' , borderWidth : 1 , borderColor : 'white' , borderRadius : 50 , paddingHorizontal : 20 , marginTop :10}}>
             <TextInput placeholder='Search City!' placeholderTextColor={'white'} value={cityName} onChangeText={(val)=>setCityName(val)} style = {{paddingVertical : 10 ,  color : 'white'}}/>
-            <TouchableOpacity onPress={()=>{}}>
+            <TouchableOpacity onPress={()=> props.navigation.navigate('Details' , {
+                name : cityName
+            })}>
                 <Feather name="search" size={24} color="white" />
             </TouchableOpacity>
         </View>
@@ -65,7 +67,7 @@ const Home = () => {
         {/* My City's */}
         <Text style = {{paddingHorizontal : 15 , marginTop : 220 , marginBottom : 5 , color : 'white' , fontSize : 25}}>My Location</Text>
         <FlatList data={cities} horizontal renderItem={({item})=>(
-            <Cards id={item.id} name={item.name} image={item.image}/>
+            <Cards id={item.id} name={item.name} image={item.image} navigation={props.navigation}/>
         )}/>
       </View>
     </View>
